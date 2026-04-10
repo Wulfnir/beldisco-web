@@ -393,7 +393,7 @@
   <nav>
     <div class="container">
       <a href="#" class="nav-logo"><img src="logo.png" alt="BELDISCO" style="height:28px; width:auto;" /></a>
-      <a href="https://testflight.apple.com/join/E4RJKcsj" class="nav-cta">Join the Beta</a>
+      <a href="https://testflight.apple.com/join/E4RJKcsj" class="nav-cta beta-btn">Join the Beta</a>
     </div>
   </nav>
 
@@ -405,7 +405,7 @@
       <h1>Your music diary.<br /><em>Your taste. Your story.</em></h1>
       <p>Log every album you listen to. Rate it, review it, share it with people who actually care about music.</p>
       <div class="hero-actions">
-        <a href="https://testflight.apple.com/join/E4RJKcsj" class="btn-primary">Join the Beta</a>
+        <a href="https://testflight.apple.com/join/E4RJKcsj" class="btn-primary beta-btn">Join the Beta</a>
         <a href="#features" class="btn-secondary">See what it does</a>
       </div>
     </div>
@@ -549,8 +549,8 @@
   <div class="container" id="download">
     <div class="cta-section">
       <h2>Start your diary.</h2>
-      <p>Free beta on iOS. Your music, finally documented.</p>
-      <a href="#" class="btn-primary">Join the Beta</a>
+      <p class="cta-sub">Free beta on iOS. Your music, finally documented.</p>
+      <a href="https://testflight.apple.com/join/E4RJKcsj" class="btn-primary beta-btn">Join the Beta</a>
     </div>
   </div>
 
@@ -571,6 +571,28 @@
     ml('account', '2258950');
   </script>
   <!-- End MailerLite Universal -->
+
+  <script>
+    (function () {
+      var ua = navigator.userAgent;
+      var isAndroid = /android/i.test(ua);
+
+      if (!isAndroid) return;
+
+      var ANDROID_MAILTO = 'mailto:beldisco@outlook.com?subject=Android%20Beta%20Request&body=Hi%2C%20I%27d%20like%20to%20join%20the%20BELDISCO%20Android%20beta.%20My%20Gmail%20address%20is%3A%20';
+
+      document.querySelectorAll('.beta-btn').forEach(function (el) {
+        el.href = ANDROID_MAILTO;
+        el.textContent = 'Request Android Access';
+      });
+
+      var eyebrow = document.querySelector('.hero-eyebrow');
+      if (eyebrow) eyebrow.textContent = 'Android beta — request access';
+
+      var ctaSub = document.querySelector('.cta-sub');
+      if (ctaSub) ctaSub.textContent = 'Android beta available — request your spot.';
+    })();
+  </script>
 
 </body>
 </html>
