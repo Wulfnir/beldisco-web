@@ -354,6 +354,40 @@
       margin-bottom: 36px;
     }
 
+    /* ── SCREENSHOTS ── */
+    .screenshots-scroll {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding: 40px 40px 48px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .screenshots-scroll::-webkit-scrollbar { display: none; }
+    .screenshot-item {
+      flex: 0 0 220px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .screenshot-item img {
+      width: 220px;
+      border-radius: 28px;
+      display: block;
+    }
+    .screenshot-caption {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.6;
+      max-width: 200px;
+      margin: 0;
+    }
+    .screenshot-caption strong { color: var(--text); }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border-dark);
@@ -516,6 +550,38 @@
           <p class="feature-title">Rewards &amp; Reputation</p>
           <p class="feature-desc">Every log builds toward your listener level — a public rank that shows the world how deep your catalog goes. Hidden achievements get dropped into your profile when you least expect it, each one named after a record or song that true music fans will instantly recognize. <strong>Your badges are your reputation.</strong></p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SCREENSHOTS -->
+  <section id="screenshots">
+    <div class="container" style="text-align:center;">
+      <p class="section-label">See it in action</p>
+      <h2 class="section-title">Built for listeners<br />who mean it.</h2>
+    </div>
+    <div class="screenshots-scroll">
+      <div class="screenshot-item">
+        <img src="1 - iphone.png" alt="Friends feed" />
+        <p class="screenshot-caption"><strong>Your friends' ears.</strong> See every album the people you follow are listening to.</p>
+      </div>
+      <div class="screenshot-item">
+        <img src="2 - iphone.png" alt="Log an album" />
+        <p class="screenshot-caption"><strong>Log it. Rate it. Own it.</strong> Every album you hear, captured with a rating and a review.</p>
+      </div>
+      <div class="screenshot-item">
+        <img src="3 - iphone.png" alt="Review and comments" />
+        <p class="screenshot-caption"><strong>Music is better shared.</strong> Like reviews, leave comments, talk about albums.</p>
+      </div>
+      <div class="screenshot-item">
+        <img src="4 - iphone.png" alt="Your profile" />
+        <p class="screenshot-caption"><strong>Your taste, documented.</strong> Your diary, ratings, and badges — all in one place.</p>
+      </div>
+      <div class="screenshot-item">
+        <img src="5 - iphone.png" alt="Discover music" />
+        <p class="screenshot-caption"><strong>Discover through people.</strong> Find your next favourite album through friends whose taste matches yours.</p>
       </div>
     </div>
   </section>
