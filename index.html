@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BELDISCO — Your Music Diary</title>
+  <meta name="description" content="Log every album you listen to. Rate it, review it, share it. BELDISCO is the music diary built for people who actually care about what they hear." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0E0B08;
+      --bg-card:   #1A1410;
+      --bg-raised: #221C14;
+      --accent:    #C8A97E;
+      --accent-dim:#8C7455;
+      --text:      #E8DDD0;
+      --text-muted:#A89A80;
+      --text-dim:  #5A4E3A;
+      --border:    rgba(200,169,126,0.15);
+      --grain-opacity: 0.04;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: var(--grain-opacity);
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,11,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--bg-card);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg-card);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent-dim); color: var(--text); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+
+    /* ── SECTION ── */
+    section {
+      padding: 80px 0;
+    }
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .section-body {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 620px;
+    }
+    .section-body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── PROBLEM ── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .problem-cell {
+      background: var(--bg-card);
+      padding: 32px;
+    }
+    .problem-cell h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .problem-cell p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+    .problem-cell p strong { color: var(--text-muted); }
+
+    /* ── COMPARISONS ── */
+    .compare-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .compare-item {
+      background: var(--bg-card);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .compare-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+      padding-top: 2px;
+    }
+    .compare-verdict {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+    .compare-verdict strong { color: var(--text-muted); font-weight: 500; }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      padding: 32px;
+    }
+    .feature-card.wide {
+      grid-column: 1 / -1;
+    }
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .feature-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .feature-desc strong { color: var(--text-muted); font-weight: 500; }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+    .quote-section blockquote {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(20px, 3.5vw, 30px);
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .quote-section blockquote em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    /* ── CTA FOOTER ── */
+    .cta-section {
+      padding: 80px 0 100px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    footer p {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: var(--accent-dim);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .problem-grid,
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card.wide { grid-column: auto; }
+      .compare-item { grid-template-columns: 1fr; gap: 6px; }
+      .compare-name { font-size: 13px; color: var(--accent-dim); }
+      nav .container { padding-top: 14px; padding-bottom: 14px; }
+      section { padding: 56px 0; }
+      .hero { padding: 72px 0 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a href="#" class="nav-logo">BELDISCO</a>
+      <a href="#download" class="nav-cta">Get the App</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="container">
+    <div class="hero">
+      <span class="hero-eyebrow">Now available on iOS</span>
+      <h1>Your music diary.<br /><em>Your taste. Your story.</em></h1>
+      <p>Log every album you listen to. Rate it, review it, share it with people who actually care about music.</p>
+      <div class="hero-actions">
+        <a href="#download" class="btn-primary">Download on the App Store</a>
+        <a href="#features" class="btn-secondary">See what it does</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEM -->
+  <section>
+    <div class="container">
+      <p class="section-label">The Problem</p>
+      <h2 class="section-title">Music is personal.<br />Your tools aren't.</h2>
+      <p class="section-body">
+        Spotify tells you what you listened to. Last.fm tracks your plays. But nowhere can you sit down, reflect on an album, and share that experience with people who actually care.
+        <br /><br />
+        <strong>A great album deserves more than a stream count.</strong>
+      </p>
+
+      <div class="problem-grid">
+        <div class="problem-cell">
+          <h3>What exists</h3>
+          <p>Passive trackers. Dense databases. Streaming algorithms. Tools built for consumption, not reflection.</p>
+        </div>
+        <div class="problem-cell">
+          <h3>What's missing</h3>
+          <p>A <strong>social diary</strong> built around albums — with real opinions, real people, and a community that takes music seriously.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WHAT IS BELDISCO -->
+  <section>
+    <div class="container">
+      <p class="section-label">What is BELDISCO?</p>
+      <h2 class="section-title">Letterboxd.<br />But for music.</h2>
+      <p class="section-body">
+        BELDISCO is an album diary app. Log every album you listen to. Rate it, review it, mark it as a favorite. Build a living archive of your musical journey and share it with friends who are doing the same.
+        <br /><br />
+        <strong>Built for music people. Built by music people.</strong>
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WHY BELDISCO -->
+  <section>
+    <div class="container">
+      <p class="section-label">Why BELDISCO?</p>
+      <h2 class="section-title">Every alternative<br />misses the point.</h2>
+
+      <div class="compare-list">
+        <div class="compare-item">
+          <span class="compare-name">Last.fm</span>
+          <p class="compare-verdict">The veteran. Tracks plays automatically, solid recommendations. But it's <strong>passive</strong> — it records what you listened to, not what you thought. The app feels like 2009.</p>
+        </div>
+        <div class="compare-item">
+          <span class="compare-name">RateYourMusic</span>
+          <p class="compare-verdict">The enthusiast's choice. Deep cataloging, beloved by serious listeners. But it's a dense desktop website. <strong>A database, not a community.</strong></p>
+        </div>
+        <div class="compare-item">
+          <span class="compare-name">Spotify</span>
+          <p class="compare-verdict">Brilliant at streaming. The social features are superficial and constantly axed. <strong>No reviews, no ratings, no diary.</strong> You consume. You don't reflect.</p>
+        </div>
+        <div class="compare-item">
+          <span class="compare-name">Album of the Year</span>
+          <p class="compare-verdict">Solid ratings aggregator. But no native app, no friend feed, no personal logging. <strong>Closer to Metacritic than Letterboxd.</strong></p>
+        </div>
+        <div class="compare-item">
+          <span class="compare-name">Letterboxd</span>
+          <p class="compare-verdict">Not a music app — but the closest spiritual model. It proved that a social diary built around a single medium can become a cultural institution. <strong>Nobody has done this for music. Yet.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <p class="section-label">Core Features</p>
+      <h2 class="section-title">Everything a serious<br />listener needs.</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">★</span>
+          <p class="feature-title">Log &amp; Rate</p>
+          <p class="feature-desc">Give any album a rating from 0.5 to 5 stars. Write a review. Mark the date you listened. <strong>Your diary, your way.</strong></p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">◎</span>
+          <p class="feature-title">Discover</p>
+          <p class="feature-desc">Your feed surfaces what's trending among the people you follow and picks curated for your taste — based on what you love and what similar listeners are into.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">↗</span>
+          <p class="feature-title">Follow Curators</p>
+          <p class="feature-desc">Find people with great taste. Follow them. Get recommendations that mean something because <strong>a real person vouched for them.</strong></p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">◈</span>
+          <p class="feature-title">Your Profile</p>
+          <p class="feature-desc">A clean, scrollable record of everything you've logged. Your level, your favorite genres, your listening stats and badges earned along the way.</p>
+        </div>
+        <div class="feature-card wide">
+          <span class="feature-icon">▲</span>
+          <p class="feature-title">Rewards &amp; Reputation</p>
+          <p class="feature-desc">The more you listen, the more you unlock. Every log builds toward your listener level — a public rank that shows the world how deep your catalog goes. Hidden achievements get dropped into your profile when you least expect it, each one named after a record or song that true music fans will instantly recognize. <strong>Your badges are your reputation.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- QUOTE -->
+  <div class="container">
+    <div class="quote-section">
+      <blockquote>
+        "Do you remember when you used to discuss albums and get recommendations from friends whose music taste you <em>actually trusted?</em>"
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <div class="container" id="download">
+    <div class="cta-section">
+      <h2>Start your diary.</h2>
+      <p>Free on iOS. Your music, finally documented.</p>
+      <a href="#" class="btn-primary">Download on the App Store</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <span class="footer-logo">BELDISCO</span>
+      <p>© 2026 BELDISCO. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
