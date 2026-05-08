@@ -1,3 +1,9 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/carousel/:path*",
+      "destination": "https://beldisco-carousel.vercel.app/carousel/:path*"
+    }
+  ]
 }
