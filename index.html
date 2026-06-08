@@ -388,6 +388,51 @@
     }
     .screenshot-caption strong { color: var(--text); }
 
+    /* ── SPONSORS ── */
+    .sponsors-section {
+      padding: 60px 0;
+      text-align: center;
+      border-top: 1px solid var(--border-dark);
+    }
+    .sponsors-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .sponsor-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      text-decoration: none;
+    }
+    .sponsor-link:hover { opacity: 1; }
+    .sponsor-link img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+    /* Placeholder style — remove once real logos are in */
+    .sponsor-placeholder {
+      height: 36px;
+      width: 100px;
+      background: var(--bg-raised);
+      border: 1px dashed var(--border-dark);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border-dark);
@@ -437,7 +482,7 @@
       <img src="logo.png" alt="BELDISCO" style="height:180px; width:auto; margin-bottom:12px;" /><br />
       <span class="hero-eyebrow">Now in beta on iOS</span>
       <h1>Your music diary.<br /><em>Your taste. Your story.</em></h1>
-      <p>Log every album you listen to. Rate it, review it, share it with people who actually care about music.</p>
+      <p>Log every album you listen to. Rate it, review it. BELDISCO exists for one reason: to make music listening intentional.</p>
       <div class="hero-actions">
         <a href="https://testflight.apple.com/join/E4RJKcsj" class="btn-primary beta-btn">Join the Beta</a>
         <a href="#features" class="btn-secondary">See what it does</a>
@@ -478,7 +523,9 @@
       <p class="section-label">What is BELDISCO?</p>
       <h2 class="section-title">Letterboxd.<br />But for music.</h2>
       <p class="section-body">
-        BELDISCO is an album diary app. Log every album you listen to. Rate it, review it, mark it as a favorite. Build a living archive of your musical journey and share it with friends who are doing the same.
+        BELDISCO is an album diary app built on one conviction: <strong>music listening should be intentional.</strong> Not passive, not algorithmic. Something you choose, sit with, and remember.
+        <br /><br />
+        Log every album, rate it, review it, mark it as a favorite. Build a living archive of your musical journey and share it with people who actually listen.
         <br /><br />
         <strong>Built for music people. Built by music people.</strong>
       </p>
@@ -544,6 +591,11 @@
           <span class="feature-icon">◈</span>
           <p class="feature-title">Your Profile</p>
           <p class="feature-desc">A clean record of everything you've logged. Your level, your stats, and badges earned along the way.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">≡</span>
+          <p class="feature-title">Curated Lists</p>
+          <p class="feature-desc">Create themed collections of albums. "Best of 2024", "Essential jazz", "Albums that broke my heart". <strong>Share them, follow others, and find music through the people who know what they're talking about.</strong></p>
         </div>
         <div class="feature-card wide">
           <span class="feature-icon">▲</span>
@@ -612,6 +664,28 @@
       <h2>Start your diary.</h2>
       <p class="cta-sub">Free beta on iOS. Your music, finally documented.</p>
       <a href="https://testflight.apple.com/join/E4RJKcsj" class="btn-primary beta-btn">Join the Beta</a>
+    </div>
+  </div>
+
+  <!-- SPONSORS -->
+  <!-- Replace .sponsor-placeholder divs with <img> tags once you have real logos -->
+  <div class="sponsors-section">
+    <div class="container">
+      <p class="section-label">Supported by</p>
+      <div class="sponsors-grid">
+        <a href="https://sponsor-one.com" class="sponsor-link" target="_blank" rel="noopener">
+          <!-- <img src="sponsor-1-logo.png" alt="Sponsor One" /> -->
+          <div class="sponsor-placeholder">Partner 1</div>
+        </a>
+        <a href="https://sponsor-two.com" class="sponsor-link" target="_blank" rel="noopener">
+          <!-- <img src="sponsor-2-logo.png" alt="Sponsor Two" /> -->
+          <div class="sponsor-placeholder">Partner 2</div>
+        </a>
+        <a href="https://sponsor-three.com" class="sponsor-link" target="_blank" rel="noopener">
+          <!-- <img src="sponsor-3-logo.png" alt="Sponsor Three" /> -->
+          <div class="sponsor-placeholder">Partner 3</div>
+        </a>
+      </div>
     </div>
   </div>
 
