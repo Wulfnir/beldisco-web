@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BELDISCO — Your Music Diary</title>
+  <title>BELDISCO: Your Music Diary</title>
   <meta name="description" content="Log every album you listen to. Rate it, review it, share it. BELDISCO is the music diary built for people who actually care about what they hear." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -413,7 +413,7 @@
     }
     .sponsor-link:hover { opacity: 1; }
     .sponsor-link img {
-      height: 36px;
+      height: 56px;
       width: auto;
       display: block;
     }
@@ -493,31 +493,6 @@
 
   <div class="divider"></div>
 
-  <!-- PROBLEM -->
-  <section>
-    <div class="container">
-      <p class="section-label">The Problem</p>
-      <h2 class="section-title">Music is personal.<br />Your tools aren't.</h2>
-      <p class="section-body">
-        Spotify tells you what you listened to. Last.fm tracks your plays. But nowhere can you sit down, reflect on an album, and share that experience with people who actually care.
-        <br /><br />
-        <strong>A great album deserves more than a stream count.</strong>
-      </p>
-      <div class="problem-grid">
-        <div class="problem-cell">
-          <h3>What exists</h3>
-          <p>Passive trackers. Dense databases. Streaming algorithms. Tools built for consumption, not reflection.</p>
-        </div>
-        <div class="problem-cell">
-          <h3>What's missing</h3>
-          <p>A <strong>social diary</strong> built around albums — with real opinions, real people, and a community that takes music seriously.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
   <!-- WHAT IS BELDISCO -->
   <section>
     <div class="container">
@@ -543,7 +518,7 @@
       <div class="compare-list">
         <div class="compare-item">
           <span class="compare-name">Last.fm</span>
-          <p class="compare-verdict">The veteran. Solid recommendations, large user base. But it's <strong>passive</strong> — it records what you listened to, not what you thought. The app feels like 2009.</p>
+          <p class="compare-verdict">The veteran. Large user base, decent recommendations. But it's built around <strong>scrobbling, not thinking.</strong> No album ratings. No reviews. No concert diary. No curated lists. No profile that tells anyone anything about your taste. It tracks play counts. That's it. The app still looks like it was designed when MySpace was alive, and the social layer never evolved past "this person listened to Radiohead 847 times." <strong>Passive by design, limited by conviction.</strong></p>
         </div>
         <div class="compare-item">
           <span class="compare-name">RateYourMusic</span>
@@ -581,7 +556,7 @@
         <div class="feature-card">
           <span class="feature-icon">◎</span>
           <p class="feature-title">Discover</p>
-          <p class="feature-desc">Your feed surfaces what's trending among people you follow and picks curated for your taste — based on what you love.</p>
+          <p class="feature-desc">Your feed surfaces what's trending among people you follow and picks curated for your taste, based on what you love.</p>
         </div>
         <div class="feature-card">
           <span class="feature-icon">&#x2197;&#xFE0E;</span>
@@ -597,6 +572,11 @@
           <span class="feature-icon">≡</span>
           <p class="feature-title">Curated Lists</p>
           <p class="feature-desc">Create themed collections of albums. "Best of 2024", "Essential jazz", "Albums that broke my heart". <strong>Share them, follow others, and find music through the people who know what they're talking about.</strong></p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">♪</span>
+          <p class="feature-title">Concert Diary</p>
+          <p class="feature-desc">Log every show you've been to. Rate it, write what you remember. Build a record of your live music life alongside your listening history. <strong>Because some albums only make sense after you've heard them live.</strong></p>
         </div>
         <div class="feature-card wide">
           <span class="feature-icon">▲</span>
@@ -677,14 +657,6 @@
         <a href="https://www.fuoritempomagazine.it/" class="sponsor-link" target="_blank" rel="noopener">
           <img src="sponsor-fuori-tempo.png" alt="Fuori Tempo" />
         </a>
-        <a href="https://sponsor-two.com" class="sponsor-link" target="_blank" rel="noopener">
-          <!-- <img src="sponsor-2-logo.png" alt="Sponsor Two" /> -->
-          <div class="sponsor-placeholder">Partner 2</div>
-        </a>
-        <a href="https://sponsor-three.com" class="sponsor-link" target="_blank" rel="noopener">
-          <!-- <img src="sponsor-3-logo.png" alt="Sponsor Three" /> -->
-          <div class="sponsor-placeholder">Partner 3</div>
-        </a>
       </div>
     </div>
   </div>
@@ -722,7 +694,7 @@
       });
 
       var eyebrow = document.querySelector('.hero-eyebrow');
-      if (eyebrow) eyebrow.textContent = 'Android beta — request access';
+      if (eyebrow) eyebrow.textContent = 'Android beta: request access';
 
       var ctaSub = document.querySelector('.cta-sub');
       if (ctaSub) ctaSub.textContent = 'Android beta available — request your spot.';
