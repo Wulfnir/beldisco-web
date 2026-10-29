@@ -139,6 +139,11 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+    .hero p.android-note {
+      font-size: 14px;
+      margin: 20px auto 0;
+    }
+    .android-note a { color: var(--text); }
     .btn-primary {
       background: var(--bg-dark);
       color: var(--text-light);
@@ -479,13 +484,14 @@
   <div class="container">
     <div class="hero">
       <img src="logo.png" alt="BELDISCO" style="height:180px; width:auto; margin-bottom:12px;" /><br />
-      <span class="hero-eyebrow">Now in beta on iOS</span>
+      <span class="hero-eyebrow">Now in beta on iOS and Android</span>
       <h1>Your music diary.<br /><em>Your taste. Your story.</em></h1>
       <p>Log every album you listen to. Rate it, review it. BELDISCO exists for one reason: to make music listening intentional.</p>
       <div class="hero-actions">
         <a href="https://testflight.apple.com/join/E4RJKcsj" class="btn-primary beta-btn">Join the Beta</a>
         <a href="#features" class="btn-secondary">See what it does</a>
       </div>
+      <p class="android-note">On Android? <a href="mailto:beldisco@outlook.com?subject=Android%20Beta%20Request&body=Hi%2C%20I%27d%20like%20to%20join%20the%20BELDISCO%20Android%20beta.%20My%20Gmail%20address%20is%3A%20">Request access to the Android beta</a></p>
     </div>
   </div>
 
@@ -604,7 +610,7 @@
         <img src="05-review.png" alt="Rate and review albums and tracks" />
       </div>
       <div class="screenshot-item">
-        <img src="04-discover.png" alt="Discover music with Spin" />
+        <img src="04-discover.png" alt="Discover music" />
       </div>
       <div class="screenshot-item">
         <img src="06-tolisten.png" alt="Search and want-to-listen lists" />
@@ -644,7 +650,7 @@
   <div class="container" id="download">
     <div class="cta-section">
       <h2>Start your diary.</h2>
-      <p class="cta-sub">Free beta on iOS. Your music, finally documented.</p>
+      <p class="cta-sub">Free beta on iOS and Android. Your music, finally documented.</p>
       <a href="https://testflight.apple.com/join/E4RJKcsj" class="btn-primary beta-btn">Join the Beta</a>
     </div>
   </div>
@@ -694,11 +700,11 @@
         el.textContent = 'Request Android Access';
       });
 
-      var eyebrow = document.querySelector('.hero-eyebrow');
-      if (eyebrow) eyebrow.textContent = 'Android beta: request access';
+      var androidNote = document.querySelector('.android-note');
+      if (androidNote) androidNote.style.display = 'none';
 
       var ctaSub = document.querySelector('.cta-sub');
-      if (ctaSub) ctaSub.textContent = 'Android beta available — request your spot.';
+      if (ctaSub) ctaSub.textContent = 'Android beta available: request your spot.';
     })();
   </script>
 
